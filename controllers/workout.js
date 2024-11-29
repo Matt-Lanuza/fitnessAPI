@@ -32,12 +32,8 @@ module.exports.getMyWorkouts = async (req, res) => {
 
     try {
         const workouts = await Workout.find({ userId });
+        return res.status(200).send({ workouts });
 
-        if (workouts.length === 0) {
-            return res.status(404).send({ error: 'No workouts found' });
-        } else {
-            return res.status(200).send({ workouts });
-        }
     } catch (error) {
         return res.status(500).send({ error: error.message });
     }
